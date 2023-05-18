@@ -40,12 +40,16 @@ services:
   #   depends_on:
   #     - dk_aplicacao_nginx
   dk_aplicacao_mysql:
-    image: "mysql:5.7"
+    image: mysql:5.7
+    container_name: ct_aplicacao_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: baseinfo
+      MYSQL_USER: user_app
+      MYSQL_PASSWORD: passinfo
+      MYSQL_ROOT_PASSWORD: passinfo
+    # volumes:
+    #   - ./docker_compose/mysql/data/:/var/lib/mysql # dados db
+    #   - ./docker_compose/mysql:/docker-entrypoint-initdb.d # migrate inicial
     ports:
       - "3306:3306"
-    environment:
-        MYSQL_DATABASE: base
-        MYSQL_USER: user_aplicacao
-        MYSQL_PASSWORD: Va$E%r3*68X2
-        MYSQL_ROOT_PASSWORD: Va$E%r3*68X2
-
