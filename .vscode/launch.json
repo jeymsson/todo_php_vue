@@ -1,0 +1,35 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "XDebug in Docker",
+            "type": "php",
+            "request": "launch",
+            "hostname": "0.0.0.0",
+            "port": 9003,
+            "log": true,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}/code"
+            },
+            "ignore": ["**/vendor/**/*.php"],
+            "xdebugSettings": {
+                "max_children": 10000,
+                "max_data": 10000,
+                "show_hidden": 1
+            }
+        },
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 9000
+        }
+    ]
+}

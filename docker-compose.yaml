@@ -1,0 +1,51 @@
+version: "3.6"
+services:
+  dk_aplicacao_nginx:
+    container_name: ct_aplicacao_nginx
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      # - ./code:/var/www/html # acesso do servidor
+      - ./conf/nginx/default.conf:/etc/nginx/conf.d/default.conf # configurações do servidor
+    depends_on:
+      - dk_aplicacao_php
+  dk_aplicacao_php:
+    container_name: ct_aplicacao_php
+    build: .
+    image: php-fpm_composer:dev
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      # - ./code:/var/www/html # acesso para execuçao
+      - ./conf/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini # configurações de execução
+    environment:
+      XDEBUG_MODE: debug # ,profile,coverage ,develop,trace,gcstats
+      XDEBUG_CONFIG: client_host=host.docker.internal client_port=9003
+    depends_on:
+      - dk_aplicacao_mysql
+  # dk_aplicacao_node:
+  #   image: node:latest
+  #   container_name: ct_aplicacao_node
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5173:5173"
+  #   tty: true
+  #   # volumes:
+  #     # - ./code:/var/www/html
+  #   working_dir: /var/www/html
+  #   command: npm run dev
+  #   depends_on:
+  #     - dk_aplicacao_nginx
+  dk_aplicacao_mysql:
+    image: "mysql:5.7"
+    ports:
+      - "3306:3306"
+    environment:
+        MYSQL_DATABASE: base
+        MYSQL_USER: user_aplicacao
+        MYSQL_PASSWORD: Va$E%r3*68X2
+        MYSQL_ROOT_PASSWORD: Va$E%r3*68X2
+
