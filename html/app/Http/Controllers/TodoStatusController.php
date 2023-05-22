@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TodoStatus;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TodoStatusController extends Controller {
     /**
      * Display a listing of the resource.
      */
     public function index() {
-        //
+        $data = TodoStatus::all();
+        return Response($data, Response::HTTP_OK);
     }
 
     /**
@@ -53,5 +56,4 @@ class TodoStatusController extends Controller {
     public function destroy(string $id) {
         //
     }
-
 }

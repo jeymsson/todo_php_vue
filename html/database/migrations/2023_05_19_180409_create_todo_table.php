@@ -12,7 +12,11 @@ return new class extends Migration {
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('message');
+            $table->unsignedBigInteger('status_id')->nullable(false);
+            $table->foreign('status_id')->references('id')->on('todo_statuses');
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
