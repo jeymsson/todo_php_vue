@@ -5,7 +5,6 @@ namespace Tests\Feature;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Models\TodoStatus;
-use Database\Seeders\TodoStatusSeeder;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
@@ -203,5 +202,4 @@ class TodoStatusTest extends TestCase {
     // check_if_valid_
     // check_if_invalid_
     //
-
 }

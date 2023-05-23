@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Todo;
 use App\Models\TodoStatus;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,9 @@ class TodoStatusSeeder extends Seeder {
         ];
 
         TodoStatus::insert($dado);
+        // Todo::insert([
+        //     'message' => 'Text',
+        //     'status_id' => 1,
+        // ]);
     }
-
 }

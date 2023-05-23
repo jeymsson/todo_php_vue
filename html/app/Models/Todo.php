@@ -20,7 +20,7 @@ class Todo extends Model {
      *
      * @var array
      */
-    protected $fillable = ['description', 'status_id'];
+    protected $fillable = ['message', 'status_id'];
 
     /**
      * The attributes that aren't mass assignable.
