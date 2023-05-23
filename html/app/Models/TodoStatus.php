@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Custom\ModelCustom;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TodoStatus extends Model {
-    use HasFactory;
+    use HasFactory, ModelCustom;
 
 	/**
 	 * The database table used by the model.
@@ -35,5 +36,4 @@ class TodoStatus extends Model {
 	 * @var array
 	 */
 	// protected $hidden = ['id'];
-
 }

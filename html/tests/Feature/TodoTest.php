@@ -18,7 +18,7 @@ class TodoTest extends TestCase {
 
     private $response_structure;
     private $response_error;
-    // private $response_structure_paged;
+    private $response_structure_paged;
 
     // LIKE CONSTRUCTOR
     public function setUp(): void {
@@ -26,7 +26,6 @@ class TodoTest extends TestCase {
         $this->initDatabase();
         $this->setStructure(['id', 'message', 'status_id', 'created_at', 'updated_at']);
         $this->setErrorStructure(['message']);
-        // $this->response_structure_paged = ['metadata' => ['page', 'limit', 'sort_by', 'sort_desc', 'total', 'total_pages'], 'result' => [$this->response_structure]];
     }
 
     public function initDatabase(): void {
@@ -42,9 +41,23 @@ class TodoTest extends TestCase {
 
     private function setStructure(array $data): void {
         $this->response_structure = $data;
+        $this->response_structure_paged = [
+            'metadata' => [
+              'page',
+              'limit',
+              'sort_by' => [],
+              'sort_desc',
+              'total',
+              'total_pages'
+            ],
+            'result' => [$data]
+        ];
     }
     private function getStructure() : array {
         return $this->response_structure;
+    }
+    private function getStructurePaged() : array {
+        return $this->response_structure_paged;
     }
     private function setErrorStructure(array $data): void {
         $this->response_error = $data;
@@ -237,5 +250,4 @@ class TodoTest extends TestCase {
     // check_if_valid_
     // check_if_invalid_
     //
-
 }

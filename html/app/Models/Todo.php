@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Custom\ModelCustom;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model {
-    use HasFactory;
+    use HasFactory, ModelCustom;
 
 	/**
 	 * The database table used by the model.
@@ -40,4 +41,5 @@ class Todo extends Model {
     public function status(){
         return $this->belongsTo(TodoStatus::class);
     }
+
 }

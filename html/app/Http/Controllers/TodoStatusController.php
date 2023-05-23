@@ -22,12 +22,22 @@ class TodoStatusController extends Controller {
             'description' => 'required|string|min:3|max:255',
         ]);
     }
+    private function getAllPaged(Request $request) {
+        // $foreign_tables = ['foreign_tables' => 'Cnae'];
+        $parameters = array_merge(
+            ['search_col_name' => 'description'],
+                    // ['foreign_tables' => 'Cnae'],
+                    $request->query()
+        );
+
+        return $this->getModel()::allPaged('*', $this->getModel(), $parameters);
+    }
 
     /**
      * Display a listing of the resource.
      */
-    public function index() {
-        $data = $this->getModel()::all();
+    public function index(Request $request) {
+        $data = $this->getAllPaged($request);
         return Response($data, Response::HTTP_OK);
     }
 
