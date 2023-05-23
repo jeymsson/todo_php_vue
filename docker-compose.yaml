@@ -26,19 +26,19 @@ services:
       XDEBUG_CONFIG: client_host=host.docker.internal client_port=9003
     depends_on:
       - dk_app_mysql
-  # dk_app_node:
-  #   image: node:latest
-  #   container_name: ct_app_node
-  #   restart: unless-stopped
-  #   ports:
-  #     - "5173:5173"
-  #   tty: true
-  #   # volumes:
-  #     # - ./code:/var/www/html
-  #   working_dir: /var/www/html
-  #   command: npm run dev
-  #   depends_on:
-  #     - dk_app_nginx
+  dk_app_node:
+    image: node:latest
+    container_name: ct_app_node
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    tty: true
+    volumes:
+      - ./html:/var/www/html
+    working_dir: /var/www/html
+    command: npm run dev
+    depends_on:
+      - dk_app_nginx
   dk_app_mysql:
     image: mysql:5.7
     container_name: ct_app_mysql
