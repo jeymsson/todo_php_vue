@@ -42,12 +42,13 @@ class TodoStatusTest extends TestCase {
         $this->response_structure = $data;
         $this->response_structure_paged = [
             'metadata' => [
-              'page',
-              'limit',
-              'sort_by' => [],
-              'sort_desc',
-              'total',
-              'total_pages'
+                'limit',
+                'sort_by' => [],
+                'sort_desc',
+                'page',
+                'total_pages',
+                'listed',
+                'total_qtde'
             ],
             'result' => [$data]
         ];
@@ -215,5 +216,4 @@ class TodoStatusTest extends TestCase {
     // check_if_valid_
     // check_if_invalid_
     //
-
 }

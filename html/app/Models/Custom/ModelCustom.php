@@ -51,14 +51,16 @@ trait ModelCustom {
         // Get columns
         $result = $query->get($columns);
 
+
         return [
             'metadata' => [
-                'page' => $page,
                 'limit' => $limit,
                 'sort_by' => $sort_by,
                 'sort_desc' => $sort_desc,
-                'total' => $total,
+                'page' => $page,
                 'total_pages' => $totalPages,
+                'listed' => count($result),
+                'total_qtde' => $total,
             ],
             'result' => $result,
         ];
